@@ -1,10 +1,9 @@
 const inicioDebug = require('debug')('app:inicio');
-const dbDebug = require('debug')('app:app:db');
 const express = require("express");
 const Joi = require("@hapi/joi");
 const morgan = require('morgan');
 const config = require('config');
-const debug = 
+const app = express();
 //instanciamos este elemento
 
 app.use(express.json());
@@ -14,7 +13,7 @@ app.use(express.static('public'));
 console.log('Aplicacion'+ config.get('nombre'));
 console.log('DB server'+ config.get('configDB.host'));
 //verificar en que entorno nos encontramos
-if(app.get('enn')==='development'){
+if(app.get('env')==='development'){
   app.use(morgan('tiny'));
   inicioDebug('Morgan esta habilitado');
 }
